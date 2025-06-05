@@ -1,0 +1,19 @@
+#### Notas OpenSees + OpenFresco 2025 ####
+
+Vienen todos los archivos necesarios en el .zip. De todas maneras, dejo el link para lo que descarguen 
+- OpenSees v3.4 (link de descarga: https://www.researchgate.net/publication/377415389_Compiled_code_for_OpenSees)
+- OpenFresco v2.7.2 (link de descarga: https://openfresco.berkeley.edu/?page_id=35)
+
+Observaciones:
+- Pegar todos los archivos (.exe y .dll) de OpenFresco en la carpeta donde está OpenSees.exe (/OpenSees-Solvers/hdf5)
+- Hay una advertencia sobre getTangentStiff(), TangentStiff cannot be calculated. Esto lo encontré en un ticket en StackOverflow o en GitHub, no recuerdo bien. Sospecho que hay un valor que está retornando NULL y el código no sabe como interpretarlo.
+- Probablemente existan funciones/métodos que OpenSees v3.4 no tenga, y que sí existan en la v3.7.2. Para esto se pueden implementar en el código (insertar las líneas que código que faltan y recompilar OpenSees) o si están en un archivo aparte (ej. un .dll) habría que agregarlo a la carpeta, importar este nuevo archivo en el código de OpenSees, y volver compilar.
+- Recomiendo cambiar la ruta donde se lee el archivo elcentro.txt en el archivo main.tcl (línea 77), para que sea la misma donde se ubica el archivo .tcl (ej. /ejemplos/Cantilever). Actualmente, hay que pegar este elcentro.txt en la misma carpeta de OpenSees.exe.
+
+Instrucciones correr el programa, ejecutar los comandos:
+OpenSees "ruta_del_archivo.tcl"
+Ejemplo:
+OpenSees ejemplos/Cantilever/Cantilever2D_worker.tcl
+OpenSees ejemplos/Cantilever/Cantilever2D_main.tcl
+
+#### MGS ####
